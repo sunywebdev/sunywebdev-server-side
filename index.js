@@ -118,6 +118,7 @@ async function run() {
 				$set: {
 					projectName: updatedReq.projectName,
 					projectDetails: updatedReq.projectDetails,
+					techUsed: updatedReq.techUsed,
 					liveLink: updatedReq.liveLink,
 					gitClientLink: updatedReq.gitClientLink,
 					gitServerLink: updatedReq.gitServerLink,
