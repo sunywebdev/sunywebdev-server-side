@@ -27,6 +27,7 @@ async function run() {
 		const usersCollection = database.collection("users");
 		const mailsCollection = database.collection("mails");
 		const reviewsCollection = database.collection("reviews");
+		const blogsCollection = database.collection("blogs");
 
 		/* ------
         ------ login , role, add user
@@ -98,6 +99,14 @@ async function run() {
 			console.log("Successfully Added New reviews ", result);
 			res.json(result);
 		});
+		//To post new blog
+		app.post("/blogs", async (req, res) => {
+			const newBlog = req.body;
+			console.log("Request from UI ", newBlog);
+			const result = await blogsCollection.insertOne(newBlog);
+			console.log("Successfully Added New Blog ", result);
+			res.json(result);
+		});
 		//To post new projects
 		app.post("/projects", async (req, res) => {
 			const newProject = req.body;
@@ -118,11 +127,19 @@ async function run() {
 				$set: {
 					projectName: updatedReq.projectName,
 					projectDetails: updatedReq.projectDetails,
+					feature1: updatedReq.feature1,
+					feature2: updatedReq.feature2,
+					feature3: updatedReq.feature3,
+					feature4: updatedReq.feature4,
+					feature5: updatedReq.feature5,
 					techUsed: updatedReq.techUsed,
 					liveLink: updatedReq.liveLink,
 					gitClientLink: updatedReq.gitClientLink,
 					gitServerLink: updatedReq.gitServerLink,
-					projectPhoto: updatedReq.projectPhoto,
+					projectPhoto1: updatedReq.projectPhoto1,
+					projectPhoto2: updatedReq.projectPhoto2,
+					projectPhoto3: updatedReq.projectPhoto3,
+					projectPhoto4: updatedReq.projectPhoto4,
 				},
 			};
 			const result = await projectsCollection.updateOne(
@@ -164,6 +181,15 @@ async function run() {
 			reviews = await get.toArray();
 			res.send(reviews);
 			console.log("Found all reviews", reviews);
+		});
+		//To Show all Blogs
+		app.get("/blogs", async (req, res) => {
+			console.log(req.query);
+			const get = blogsCollection.find({});
+			console.log("Request to find blogs");
+			blogs = await get.toArray();
+			res.send(blogs);
+			console.log("Found all blogs", blogs);
 		});
 		//To Show all mails
 		app.get("/mails", async (req, res) => {
