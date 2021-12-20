@@ -29,6 +29,294 @@ async function run() {
 		const reviewsCollection = database.collection("reviews");
 		const blogsCollection = database.collection("blogs");
 
+		///////////////////////
+		/////////////////////////
+		///////////////////////
+		const formsCollection = database.collection("forms");
+		const emailsCollection = database.collection("emails");
+		const headlineCollection = database.collection("headline");
+		const linksCollection = database.collection("links");
+		const detailsCollection = database.collection("details");
+		const bannerCollection = database.collection("banner");
+		const profileCollection = database.collection("profile");
+		const galleryCollection = database.collection("gallery");
+		const reviewCollection = database.collection("review");
+
+		//To post new forms
+		app.post("/forms", async (req, res) => {
+			const newForms = req.body;
+			console.log("Request from UI ", newForms);
+			const result = await formsCollection.insertOne(newForms);
+			console.log("Successfully Added New forms ", result);
+			res.json(result);
+		});
+		//To post new review
+		app.post("/review", async (req, res) => {
+			const review = req.body;
+			console.log("Request from UI ", review);
+			const result = await reviewCollection.insertOne(review);
+			console.log("Successfully Added New review ", result);
+			res.json(result);
+		});
+		//To post new emails
+		app.post("/emails", async (req, res) => {
+			const newEmail = req.body;
+			console.log("Request from UI ", newEmail);
+			const result = await emailsCollection.insertOne(newEmail);
+			console.log("Successfully Added New emails ", result);
+			res.json(result);
+		});
+		//To post new newHeadline
+		app.post("/headline", async (req, res) => {
+			const newHeadline = req.body;
+			console.log("Request from UI ", newHeadline);
+			const result = await headlineCollection.insertOne(newHeadline);
+			console.log("Successfully Added New headline ", result);
+			res.json(result);
+		});
+
+		// To store/update links
+		app.put("/links/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "links" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					email: updatedReq?.email,
+					facebook: updatedReq?.facebook,
+					whatsapp: updatedReq?.whatsapp,
+					youtube: updatedReq?.youtube,
+					sms: updatedReq?.sms,
+					twitter: updatedReq?.twitter,
+					vcf: updatedReq?.vcf,
+				},
+			};
+			const result = await linksCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
+		// To store/update details
+		app.put("/details/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "details" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					details: updatedReq?.details,
+				},
+			};
+			const result = await detailsCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
+		// To store/update profile
+		app.put("/profile/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "profile" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					imageLink2: updatedReq?.imageLink2,
+				},
+			};
+			const result = await profileCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
+		// To store/update banner
+		app.put("/banner/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "banner" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					imageLink2: updatedReq?.imageLink2,
+				},
+			};
+			const result = await bannerCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
+		// To store/update headline
+		app.put("/headline/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "headline" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					title: updatedReq?.title,
+					subtitle: updatedReq?.subtitle,
+				},
+			};
+			const result = await headlineCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
+
+		//To post new links
+		app.post("/links", async (req, res) => {
+			const newLinks = req.body;
+			console.log("Request from UI ", newLinks);
+			const result = await linksCollection.insertOne(newLinks);
+			console.log("Successfully Added New links ", result);
+			res.json(result);
+		});
+		//To post new details
+		app.post("/details", async (req, res) => {
+			const newDetails = req.body;
+			console.log("Request from UI ", newDetails);
+			const result = await detailsCollection.insertOne(newDetails);
+			console.log("Successfully Added New details ", result);
+			res.json(result);
+		});
+		//To post new banner
+		app.post("/banner", async (req, res) => {
+			const newBanner = req.body;
+			console.log("Request from UI ", newBanner);
+			const result = await bannerCollection.insertOne(newBanner);
+			console.log("Successfully Added New banner ", result);
+			res.json(result);
+		});
+		//To post new profile
+		app.post("/profile", async (req, res) => {
+			const newProfile = req.body;
+			console.log("Request from UI ", newProfile);
+			const result = await profileCollection.insertOne(newProfile);
+			console.log("Successfully Added New profile ", result);
+			res.json(result);
+		});
+		//To post new gallery
+		app.post("/gallery", async (req, res) => {
+			const newGallery = req.body;
+			console.log("Request from UI ", newGallery);
+			const result = await galleryCollection.insertOne(newGallery);
+			console.log("Successfully Added New gallery ", result);
+			res.json(result);
+		});
+
+		//To load links by id
+		app.get("/headline/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "headline" };
+			const result = await headlineCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+		//To load links by id
+		app.get("/links/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "links" };
+			const result = await linksCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+		//To load links by id
+		app.get("/details/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "details" };
+			const result = await detailsCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+		//To load banner by id
+		app.get("/banner/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "banner" };
+			const result = await bannerCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+		//To load profile by id
+		app.get("/profile/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "profile" };
+			const result = await profileCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+
+		//To Show all gallery
+		app.get("/gallery", async (req, res) => {
+			console.log(req.query);
+			const get = galleryCollection.find({});
+			console.log("Request to find gallery");
+			gallery = await get.toArray();
+			res.send(gallery);
+			console.log("Found all gallery", gallery);
+		});
+		//To Show all review
+		app.get("/review", async (req, res) => {
+			console.log(req.query);
+			const get = reviewCollection.find({});
+			console.log("Request to find review");
+			review = await get.toArray();
+			res.send(review);
+			console.log("Found all review", review);
+		});
+		//To Show all forms
+		app.get("/forms", async (req, res) => {
+			console.log(req.query);
+			const get = formsCollection.find({});
+			console.log("Request to find forms");
+			forms = await get.toArray();
+			res.send(forms);
+			console.log("Found all forms", forms);
+		});
+		//To Show all mails
+		app.get("/emails", async (req, res) => {
+			console.log(req.query);
+			const get = emailsCollection.find({});
+			console.log("Request to find emails");
+			emails = await get.toArray();
+			res.send(emails);
+			console.log("Found all emails", emails);
+		});
+
+		//////////////////////
+		/////////////////////
+		//////////////////
+		///////////////////
+		////////////////
 		/* ------
         ------ login , role, add user
         ------ */
