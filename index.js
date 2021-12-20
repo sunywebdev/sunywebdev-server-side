@@ -40,7 +40,7 @@ async function run() {
 		const bannerCollection = database.collection("banner");
 		const profileCollection = database.collection("profile");
 		const galleryCollection = database.collection("gallerys");
-		const reviewCollection = database.collection("review");
+		const reviewCollection = database.collection("reviewss");
 
 		//To post new forms
 		app.post("/forms", async (req, res) => {
