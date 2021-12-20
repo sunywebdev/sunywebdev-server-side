@@ -39,7 +39,7 @@ async function run() {
 		const detailsCollection = database.collection("details");
 		const bannerCollection = database.collection("banner");
 		const profileCollection = database.collection("profile");
-		const galleryCollection = database.collection("gallery");
+		const galleryCollection = database.collection("gallerys");
 		const reviewCollection = database.collection("review");
 
 		//To post new forms
