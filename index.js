@@ -33,20 +33,29 @@ async function run() {
 		/////////////////////////
 		///////////////////////
 		const formsCollection = database.collection("forms");
+		const forms2Collection = database.collection("forms2");
 		const emailsCollection = database.collection("emails");
 		const headlineCollection = database.collection("headline");
 		const linksCollection = database.collection("links");
 		const detailsCollection = database.collection("details");
 		const bannerCollection = database.collection("banner");
 		const profileCollection = database.collection("profile");
-		const galleryCollection = database.collection("gallerys");
-		const reviewCollection = database.collection("reviewss");
+		const galleryCollection = database.collection("gallery");
+		const reviewCollection = database.collection("allreviews");
 
 		//To post new forms
 		app.post("/forms", async (req, res) => {
 			const newForms = req.body;
 			console.log("Request from UI ", newForms);
 			const result = await formsCollection.insertOne(newForms);
+			console.log("Successfully Added New forms ", result);
+			res.json(result);
+		});
+		//To post new forms2
+		app.post("/forms2", async (req, res) => {
+			const newForms = req.body;
+			console.log("Request from UI ", newForms);
+			const result = await forms2Collection.insertOne(newForms);
 			console.log("Successfully Added New forms ", result);
 			res.json(result);
 		});
@@ -297,6 +306,15 @@ async function run() {
 		app.get("/forms", async (req, res) => {
 			console.log(req.query);
 			const get = formsCollection.find({});
+			console.log("Request to find forms");
+			forms = await get.toArray();
+			res.send(forms);
+			console.log("Found all forms", forms);
+		});
+		//To Show all forms2
+		app.get("/forms2", async (req, res) => {
+			console.log(req.query);
+			const get = forms2Collection.find({});
 			console.log("Request to find forms");
 			forms = await get.toArray();
 			res.send(forms);
