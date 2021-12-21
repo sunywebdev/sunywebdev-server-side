@@ -42,6 +42,7 @@ async function run() {
 		const profileCollection = database.collection("profile");
 		const galleryCollection = database.collection("gallery");
 		const reviewCollection = database.collection("allreviews");
+		const colorCollection = database.collection("color");
 
 		//To post new forms
 		app.post("/forms", async (req, res) => {
@@ -154,6 +155,27 @@ async function run() {
 			res.json(result);
 			console.log("Updated Successfully", result);
 		});
+		// To store/update color
+		app.put("/color/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to update ", id);
+			const projectId = { type: "color" };
+			const updatedReq = req.body;
+			console.log("Comming form UI", updatedReq);
+			const options = { upsert: true };
+			const updateProject = {
+				$set: {
+					color: updatedReq?.color,
+				},
+			};
+			const result = await colorCollection.updateOne(
+				projectId,
+				updateProject,
+				options,
+			);
+			res.json(result);
+			console.log("Updated Successfully", result);
+		});
 		// To store/update banner
 		app.put("/banner/:type", async (req, res) => {
 			const id = req.params.id;
@@ -249,6 +271,15 @@ async function run() {
 			console.log("Request to find ", id);
 			const findId = { type: "headline" };
 			const result = await headlineCollection.findOne(findId);
+			res.send(result);
+			console.log("Found one", result);
+		});
+		//To load color by id
+		app.get("/color/:type", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to find ", id);
+			const findId = { type: "color" };
+			const result = await colorCollection.findOne(findId);
 			res.send(result);
 			console.log("Found one", result);
 		});
