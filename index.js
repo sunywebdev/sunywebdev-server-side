@@ -100,8 +100,7 @@ async function run() {
 					youtube: updatedReq?.youtube,
 					sms: updatedReq?.sms,
 					twitter: updatedReq?.twitter,
-					mapLink: updatedReq?.mapLink,
-					youtubeVideo: updatedReq?.youtubeVideo,
+					instagram: updatedReq?.instagram,
 				},
 			};
 			const result = await linksCollection.updateOne(
@@ -123,6 +122,7 @@ async function run() {
 			const updateProject = {
 				$set: {
 					details: updatedReq?.details,
+					video: updatedReq?.video,
 				},
 			};
 			const result = await detailsCollection.updateOne(
@@ -187,6 +187,10 @@ async function run() {
 				$set: {
 					title: updatedReq?.title,
 					subtitle: updatedReq?.subtitle,
+					contact: updatedReq?.contact,
+					review: updatedReq?.review,
+					gallery: updatedReq?.gallery,
+					aboutUs: updatedReq?.aboutUs,
 				},
 			};
 			const result = await headlineCollection.updateOne(
