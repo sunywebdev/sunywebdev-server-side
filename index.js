@@ -101,6 +101,7 @@ async function run() {
 					sms: updatedReq?.sms,
 					twitter: updatedReq?.twitter,
 					mapLink: updatedReq?.mapLink,
+					youtube: updatedReq?.youtube,
 				},
 			};
 			const result = await linksCollection.updateOne(
