@@ -329,6 +329,51 @@ async function run() {
 			res.send(emails);
 			console.log("Found all emails", emails);
 		});
+		//To Delete review one by one
+		app.delete("/review/:id", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to delete ", id);
+			const deleteId = { _id: ObjectId(id) };
+			const result = await reviewCollection.deleteOne(deleteId);
+			res.send(result);
+			console.log("reviews Successfully Deleted", result);
+		});
+		//To Delete emails one by one
+		app.delete("/emails/:id", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to delete ", id);
+			const deleteId = { _id: ObjectId(id) };
+			const result = await emailsCollection.deleteOne(deleteId);
+			res.send(result);
+			console.log("emails Successfully Deleted", result);
+		});
+		//To Delete forms one by one
+		app.delete("/forms/:id", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to delete ", id);
+			const deleteId = { _id: ObjectId(id) };
+			const result = await formsCollection.deleteOne(deleteId);
+			res.send(result);
+			console.log("forms Successfully Deleted", result);
+		});
+		//To Delete forms2 one by one
+		app.delete("/forms2/:id", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to delete ", id);
+			const deleteId = { _id: ObjectId(id) };
+			const result = await forms2Collection.deleteOne(deleteId);
+			res.send(result);
+			console.log("forms2 Successfully Deleted", result);
+		});
+		//To Delete gallery one by one
+		app.delete("/gallery/:id", async (req, res) => {
+			const id = req.params.id;
+			console.log("Request to delete ", id);
+			const deleteId = { _id: ObjectId(id) };
+			const result = await galleryCollection.deleteOne(deleteId);
+			res.send(result);
+			console.log("gallery Successfully Deleted", result);
+		});
 
 		//////////////////////
 		/////////////////////
