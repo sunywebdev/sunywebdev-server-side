@@ -144,6 +144,7 @@ async function run() {
 					projectPhoto3: updatedReq.projectPhoto3,
 					projectPhoto4: updatedReq.projectPhoto4,
 					submitTime: updatedReq.submitTime,
+					sort: updatedReq.sort,
 				},
 			};
 			const result = await projectsCollection.updateOne(
@@ -227,6 +228,7 @@ async function run() {
 			res.send(result);
 			console.log("user Successfully Deleted", result);
 		});
+		
 		//To Delete projects one by one
 		app.delete("/projects/:id", async (req, res) => {
 			const id = req.params.id;
