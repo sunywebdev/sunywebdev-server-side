@@ -5,12 +5,12 @@
     "express": "^4.17.1",
     "firebase-admin": "^10.0.0",
     "mongodb": "^4.2.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sib-api-v3-sdk": "^8.5.0"
   },
   "name": "sunywebdev-back-end",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
     "start-dev": "nodemon index.js",
