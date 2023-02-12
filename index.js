@@ -142,6 +142,7 @@ async function run() {
 			const updateProject = {
 				$set: {
 					projectName: updatedReq.projectName,
+					projectType: updatedReq.projectType,
 					projectDetails: updatedReq.projectDetails,
 					feature1: updatedReq.feature1,
 					feature2: updatedReq.feature2,
